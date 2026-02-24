@@ -33,7 +33,7 @@ class router
                 $controllerClass = 'App\Controllers\\' . $router['controller'];
                 $controller = new $controllerClass();
                 $function = $router['function'];
-                $controller->$function();
+                call_user_func_array(callback: [$controller, $function], args:$matches);
                 return;
             }
         }
