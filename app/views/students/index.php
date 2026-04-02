@@ -35,7 +35,7 @@
                             <th class="px-4 py-2 text-left">NIS</th>
                             <th class="px-4 py-2 text-left">Kelas</th>
                             <th class="px-4 py-2 text-left">No Telepon</th>
-                            <th class="px-4 py-2">Aksi </th>
+                            <th class="px-4 py-2 ">Aksi </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,7 +62,7 @@
     </main>
     <footer class="bg-gray-800 text-white">
         <div class="text-center p-4">
-            &copy <?= date('Y') ?>?> Sistem Sekolah - SMK Kristen Immanuel
+            &copy <?= date('Y') ?> Sistem Sekolah - SMK Kristen Immanuel
         </div>
     </footer>
 </body>
