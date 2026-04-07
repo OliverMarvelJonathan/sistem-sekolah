@@ -47,8 +47,8 @@
                             <td class="px-4 py-2 text-left">08123456789</td>
                             <td class="flex justify-center items-center gap-4">
                                 <div>
-                                    <a href="" class="text-green-500">Detail</a>
-                                    <a href="" class="text-yellow-500">Edit</a>
+                                    <a href="/students/1" class="text-green-500">Detail</a>
+                                    <a href="/students/1/edit" class="text-yellow-500">Edit</a>
                                     <a href="" class="text-red-500">Hapus</a>
                                 </div>
                             </td>
