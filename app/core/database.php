@@ -14,7 +14,6 @@ public function __construct()
         DB_USER,
         DB_PASSWORD,
         DB_NAME
- 
     );
         if(!$this->connection) {
         die('Error to connect database');
