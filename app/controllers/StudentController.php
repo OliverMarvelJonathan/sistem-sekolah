@@ -9,10 +9,10 @@ use App\Models\Student;
 class StudentController extends Controller
 {
     public function index()
+ 
     {
         $studentModel = new Student();
-        $students =$studentModel->getStudents();
- 
+        $students = $studentModel->getStudents();
  
         $this->view('students.index', [
             'students' => $students
@@ -20,31 +20,59 @@ class StudentController extends Controller
     }
  
     public function create()
+ 
     {
         $this->view('students.create');
+ 
     }
  
     public function show(string $id)
     {
         $id = intval($id);
-
+       
         $studentModel = new Student();
-        $student = $studentModel->getStudent($id); 
-
+        $student = $studentModel->getStudent($id);
+ 
         $this->view('students.show', [
             'student' => $student
         ]);
+   
     }
  
-    public function edit(string $id )
+    public function edit(string $id)
     {
-        $this->view('students.edit');
+        $id = intval($id);
+       
+        $studentModel = new Student();
+        $student = $studentModel->getStudent($id);
+       
+        $this->view('students.edit', [
+            'student' => $student
+        ]);
+   
     }
-
+   
+ 
     public function store()
     {
         $studentModel = new Student();
-        $studentModel->insert($_POST);
+        $studentModel -> insert($_POST);
     }
+ 
+    public function update(string $id)
+    {
+        $id = intval($id);
+        $studentModel = new Student();
+        $studentModel -> update($_POST, $id);
+    }
+ 
+        public function Destroy(string $id)
+    {
+        $id = intval($id);
+        $studentModel = new Student();
+        $studentModel -> delete($id);
+    }
+   
+   
 }
 ?>

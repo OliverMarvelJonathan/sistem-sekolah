@@ -6,6 +6,7 @@ use App\Controllers\StudentController;
  
 class Router
 {
+ 
     private array $routes = [];
  
     public function add(string $method, string $uri, string $controller, string $function)
@@ -16,37 +17,40 @@ class Router
             'controller' => $controller,
             'function' => $function,
         ];
-    }
  
+    }
     public function run()
     {
         $method = $_SERVER['REQUEST_METHOD'];
  
+        //mencegah spoofing
         if ($method === 'POST' && isset($_POST['_method'])) {
-            $method = strtoupper($_POST['_method']);
+            $method = strtoupper($_POST['_method']  );
         }
- 
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
  
-        foreach ($this->routes as $route) {
+        foreach ($this->routes as $router) {
             $pattern = str_replace(
                 '{id}',
                 '([0-9]+)',
-                $route['uri']
+                $router['uri']
             );
  
             $pattern = '#^' . $pattern . '$#';
  
-            if ($method === $route['method'] && preg_match($pattern, $uri, $matches)) {
-                require_once '../app/controllers/' . $route['controller'] . '.php';
+            //langkah tambahan mencegah spoofing
+            if ($method === $router['method'] &&  preg_match($pattern, $uri, $matches)) {
+                require_once '../app/controllers/' . $router['controller'] . '.php';
                 array_shift($matches);
-                $controllerClass = 'App\\Controllers\\' . $route['controller'];
+ 
+                $controllerClass = 'App\\Controllers\\' . $router['controller'];
                 $controller = new $controllerClass();
  
-                $function = $route['function'];
+                $function = $router['function'];
                 call_user_func_array([$controller, $function], $matches);
  
                 return;
+ 
             }
         }
  
